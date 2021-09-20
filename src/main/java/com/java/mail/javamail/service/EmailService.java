@@ -7,5 +7,5 @@ import org.springframework.stereotype.Service;
 public interface EmailService {
 
 
-    void sendEmail(EmailEntity emailEntity);
+    EmailEntity sendEmail(EmailEntity emailEntity);
 }

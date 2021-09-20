@@ -3,6 +3,7 @@ package com.java.mail.javamail.controller;
 import com.java.mail.javamail.domain.EmailEntity;
 import com.java.mail.javamail.dto.EmailDto;
 import com.java.mail.javamail.service.EmailService;
+import com.java.mail.javamail.utils.EmailUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
@@ -19,12 +20,11 @@ import javax.validation.Valid;
 @RequestMapping("/email")
 public class EmailController {
     private final EmailService emailService;
+    private final EmailUtils emailUtils;
 
     @PostMapping(value = "/enviar-email")
-    public ResponseEntity<EmailEntity> enviarEmail(@RequestBody @Valid EmailDto emailDto){
-    EmailEntity emailEntity = new EmailEntity();
-        BeanUtils.copyProperties(emailDto, emailEntity);
-        emailService.sendEmail(emailEntity);
-        return new ResponseEntity<>(emailEntity, HttpStatus.CREATED);
+    public ResponseEntity<EmailDto> enviarEmail(@RequestBody @Valid EmailDto emailDto){
+        emailUtils.enviaListaDeEmail(emailDto);
+        return ResponseEntity.ok().body(emailDto);
     }
 }
