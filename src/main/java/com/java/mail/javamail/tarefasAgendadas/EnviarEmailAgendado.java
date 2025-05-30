@@ -26,14 +26,6 @@ public class EnviarEmailAgendado {
         log.info("[API-MESSENGER] - ATIVANDO TAREFA AGENDADA DE 5 MINUTOS PARA EMAILS QUE DERAM PROBLEMA NO ENVIO {}", LocalDateTime.now());
         List<EmailEntity> emailsNaoEnviados = emailRepository.findEmailEntityByStatus();
 
-        emailsNaoEnviados.forEach(e -> {
-            emailService.sendEmail(
-                    EmailEntity.builder()
-                            .emailTo(e.getEmailTo())
-                            .subject("teste de envio a cada minuto")
-                            .text("teste de envio a cada minuto").build()
-            );
-        });
-
+        emailsNaoEnviados.forEach(emailService::sendEmail);
     }
 }
