@@ -24,6 +24,8 @@ public class EmailEntity implements Serializable {
     private String subject;
     @Column (columnDefinition = "TEXT")
     private String text;
+    @Column (columnDefinition = "TEXT")
+    private String bodyHtml;
     private LocalDateTime sendDateEmail;
     private StatusEmail statusEmail;
 

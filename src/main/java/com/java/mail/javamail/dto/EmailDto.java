@@ -18,5 +18,6 @@ public class EmailDto {
     private String subject;
     @NotBlank
     private String text;
+    private String bodyHtml;
 }
 
